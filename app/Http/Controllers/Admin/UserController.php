@@ -18,7 +18,6 @@ class UserController extends Controller
     private $controllerName = 'admin';
     protected $pathToView = 'admin.pages.';
     private $pathToUi = 'ui_resources/startbootstrap-sb-admin-2/';
-    protected $searchKeyWord = "";
     protected $userRepo;
     /**
      * Display a listing of the resource.
@@ -38,7 +37,7 @@ class UserController extends Controller
         try {
             $users = $this->userRepo->getAll();
         } catch (ModelNotFoundException $exception) {
-            return redirect()->route('post.index')->withError($exception->getMessage())->withInput();
+            return back()->withError($exception->getMessage())->withInput();
         }
         return view(
             $this->pathToView . 'listUser',
@@ -50,6 +49,7 @@ class UserController extends Controller
             )
         );
     }
+
     /**
      * Show the form for creating a new resource.
      *

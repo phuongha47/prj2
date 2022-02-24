@@ -25,7 +25,6 @@ class AddCategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|max:50|unique:categories|regex:/^([a-zA-Z]+)(\s[a-zA-Z]+)*$/',
-            'parent_id' => 'required',
         ];
     }
 }

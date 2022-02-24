@@ -13,6 +13,9 @@ class UserPostController extends Controller
     protected $pathToView = 'user.pages.';
     protected $imgPosts;
     protected $categoriesWithChildren;
+    protected $limit;
+
+    protected $maxBody;
 
     /**
      * Show the form for creating a new resource.
@@ -21,6 +24,8 @@ class UserPostController extends Controller
      */
     public function __construct()
     {
+        $this->limit = config('app.limit');
+        $this->maxBody = config('model.posts.maxBody');
         $this->imgPosts = Image::where('imageable_type', Post::class)->get();
         $this->categoriesWithChildren = Category::with('children')->whereNull('parent_id')->get();
     }
@@ -72,9 +77,12 @@ class UserPostController extends Controller
         return view(
             $this->pathToView . 'detailPostUser',
             array_merge(
-                compact('post', 'imgsPost', 'latestPosts', 'categoriesWithChildren'),
+                compact('post', 'latestPosts'),
                 [
                     'searchKeyWord' => $this->searchKeyWord,
+                    'imgsPost' => $this->imgPosts,
+                    'categoriesWithChildren' => $this->categoriesWithChildren,
+                    'maxBody' => $this->maxBody,
                 ]
             )
         );

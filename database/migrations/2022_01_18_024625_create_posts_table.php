@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('body');
-            $table->integer('author_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('author_id')->nullable();
+            $table->integer('category_id');
             $table->timestamps();
         });
     }

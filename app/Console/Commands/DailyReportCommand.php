@@ -19,6 +19,7 @@ class DailyReportCommand extends Command
      * @var string
      */
     protected $signature = 'report:daily';
+    protected $role;
 
     /**
      * The console command description.
@@ -44,13 +45,14 @@ class DailyReportCommand extends Command
      */
     public function handle()
     {
-        $user = DB::table('users')
+        $this->role = config('role.admin');
+        $users = DB::table('users')
             ->select('*')
-            ->where('role_id', '=', 1)
+            ->where('role_id', '=', $this->role)
             ->get();
         $posts = Post::whereDate('created_at', Carbon::today())->get();
         $count = count($posts);
 
-        Mail::to($user)->send(new DailyReportMail($count, $posts));
+        Mail::to($users)->send(new DailyReportMail($count, $posts));
     }
 }

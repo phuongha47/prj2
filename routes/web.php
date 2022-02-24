@@ -1,12 +1,8 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\Users\HomeController;
-use App\Http\Controllers\Users\UserPostController;
-use App\Http\Controllers\Users\UserCategoryController;
+use App\Http\Controllers\Users;
 
 // use App\Http\Controllers\Users\UserPostController as ;
 
@@ -21,12 +17,18 @@ use App\Http\Controllers\Users\UserCategoryController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', 'User\HomeController@index')->name('home.index');
+Route::get('/', 'Users\HomeController@show')->name('home.index');
+Route::get('/show/{id}', 'Users\HomeController@show')->name('home.category');
+Route::get('/search', 'Users\HomeController@search')->name('home.search');
 
-Route::get('/admin', 'Admin\PostController@index')->name('post.index');
+Route::get('/category/show/{id}', 'Users\UserCategoryController@showSubCategories')->name('userCategory.show');
+Route::get('/category/showCategory/{id}', 'Users\UserCategoryController@showCategories')->name('userCategory.showCategory');
+
+Route::get('/show/{id}', 'Users\UserPostController@show')->name('userPost.show');
+
+Route::get('/admin', 'Admin\AdminController@index')->name('admin.index');
+
+Route::get('/admin/post', 'Admin\PostController@index')->name('post.index');
 Route::get('admin/create/', 'Admin\PostController@create')->name('post.create');
 Route::post('admin/store', 'Admin\PostController@store')->name('post.store');
 Route::get('admin/show/{id}', 'Admin\PostController@show')->name('post.show');
@@ -50,6 +52,7 @@ Route::get('admin/category', 'Admin\CategoryController@index')->name('category.i
 Route::get('admin/category/create/', 'Admin\CategoryController@create')->name('category.create');
 Route::get('/admin/categorySub', 'Admin\CategoryController@createSubCategory')->name('categorysub.create');
 Route::post('admin/category/store', 'Admin\CategoryController@store')->name('category.store');
+Route::post('admin/subCategory/store', 'Admin\CategoryController@storeSubCategory')->name('category.storeSubCategory');
 Route::get('admin/category/show/{id}', 'Admin\CategoryController@show')->name('category.show');
 Route::get('admin/category/edit/{post_id}', 'Admin\CategoryController@edit')->name('category.edit');
 Route::put('admin/category/update/{id}', 'Admin\CategoryController@update')->name('category.update');
@@ -61,3 +64,7 @@ Route::get('lang/{lang}', [
     'as' => 'lang.switch',
     'uses' => 'LanguageController@switchLang'
 ]);
+
+Route::post('admin/comment/store/{id}', 'Users\CommentController@store')->name('comment.store');
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -25,10 +25,10 @@ class UserAddRequest extends FormRequest
     {
         return [
             'name' => 'required|alpha_num|min:3|max:255',
-            'email' => 'required|email|max:255|unique:users',
             'password' => 'required|confirmed|min:6',
             'password_confirmation' => 'min:6',
             'role_id' => 'required',
+            'email' => 'email|unique:users',
         ];
     }
 }

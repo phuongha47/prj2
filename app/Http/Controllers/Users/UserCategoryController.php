@@ -8,11 +8,16 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\Image;
 
+use function PHPUnit\Framework\isNull;
+
 class UserCategoryController extends Controller
 {
     protected $pathToView = 'user.pages.';
     protected $imgPosts;
     protected $categoriesWithChildren;
+    protected $limit;
+    protected $maxBody;
+
 
     /**
      * Show the form for creating a new resource.
@@ -21,6 +26,8 @@ class UserCategoryController extends Controller
      */
     public function __construct()
     {
+        $this->limit = config('app.limit');
+        $this->maxBody = config('model.posts.maxBody');
         $this->imgPosts = Image::where('imageable_type', Post::class)->get();
         $this->categoriesWithChildren = Category::with('children')->whereNull('parent_id')->get();
     }
@@ -62,6 +69,19 @@ class UserCategoryController extends Controller
         $category = Category::findOrFail($id);
         //posts
         $posts = $category->posts()->paginate($this->limit);
+        if (count($category->posts()->get())<1){
+            
+            return view(
+                $this->pathToView . 'emptyContent',
+                array_merge(
+                    [
+                        'searchKeyWord' => $this->searchKeyWord,
+                        'categoriesWithChildren' => $this->categoriesWithChildren,
+                        'maxBody' => $this->maxBody,
+                    ]
+                )
+            );
+        }
 
         return view(
             $this->pathToView . 'detailSubCategory',
@@ -71,6 +91,7 @@ class UserCategoryController extends Controller
                     'searchKeyWord' => $this->searchKeyWord,
                     'imgPosts' => $this->imgPosts,
                     'categoriesWithChildren' => $this->categoriesWithChildren,
+                    'maxBody' => $this->maxBody,
                 ]
             )
         );
@@ -102,6 +123,7 @@ class UserCategoryController extends Controller
                     'searchKeyWord' => $this->searchKeyWord,
                     'imgPosts' => $this->imgPosts,
                     'categoriesWithChildren' => $this->categoriesWithChildren,
+                    'maxBody' => $this->maxBody,
                 ]
             )
         );

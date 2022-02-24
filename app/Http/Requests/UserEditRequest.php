@@ -26,7 +26,8 @@ class UserEditRequest extends FormRequest
         return [
             'name' => 'min:3|max:255',
             'email' => 'email',
-            'password' => 'nullable',
+            'password' => 'nullable|confirmed|min:6',
+            'password_confirmation' => 'nullable|min:6',
         ];
     }
 }

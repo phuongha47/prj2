@@ -130,8 +130,10 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         //check parent for category
         if ((is_null($category->parent_id)) && (is_null($request->parent_id))) {
-            $category->update($request->all());
-        } elseif ((!is_null($category->parent_id))//check parent for sub_category
+            $category->update($request->all());        
+        }
+        //check parent for sub_category
+        elseif ((!is_null($category->parent_id))
             && (!is_null($request->parent_id))
             && ($category->id != $request->parent_id)) {
             $category->update($request->all());

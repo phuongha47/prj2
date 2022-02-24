@@ -9,20 +9,44 @@
     <title> @yield('pageTitle') - ADMIN </title>
 
     <!-- Custom fonts for this template-->
-    <link href={{ asset( $path_to_ui . "vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+    <link href={{ asset( $pathToUi . "vendor/fontawesome-free/css/all.min.css") }} rel="stylesheet" type="text/css">
 
     <!-- Custom styles for this template-->
-    <link href={{ asset( $path_to_ui . "css/sb-admin-2.min.css") }} rel="stylesheet">
+    <link href={{ asset( $pathToUi . "css/sb-admin-2.min.css") }} rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href={{ asset( $path_to_ui . "vendor/datatables/dataTables.bootstrap4.min.css") }} rel="stylesheet">
+    <link href={{ asset( $pathToUi . "vendor/datatables/dataTables.bootstrap4.min.css") }} rel="stylesheet">
+
+    <!-- loader -->
+    <script src="resouce/meranda-master/js/jquery-3.3.1.min.js"></script>
+    <script src="resouce/meranda-master/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="resouce/meranda-master/js/jquery-ui.js"></script>
+    <script src="resouce/meranda-master/js/popper.min.js"></script>
+    <script src="resouce/meranda-master/js/bootstrap.min.js"></script>
+    <script src="resouce/meranda-master/js/owl.carousel.min.js"></script>
+    <script src="resouce/meranda-master/js/jquery.stellar.min.js"></script>
+    <script src="resouce/meranda-master/js/jquery.countdown.min.js"></script>
+    <script src="resouce/meranda-master/js/bootstrap-datepicker.min.js"></script>
+    <script src="resouce/meranda-master/js/jquery.easing.1.3.js"></script>
+    <script src="resouce/meranda-master/js/aos.js"></script>
+    <script src="resouce/meranda-master/js/jquery.fancybox.min.js"></script>
+    <script src="resouce/meranda-master/js/jquery.sticky.js"></script>
+    <script src="resouce/meranda-master/js/jquery.mb.YTPlayer.min.js"></script>
+
+    <script src="resouce/meranda-master/js/main.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"
         integrity="sha512-vBmx0N/uQOXznm/Nbkp7h0P1RfLSj0HQrFSzV8m7rOGyj30fYAOKHYvCNez+yM8IrfnW0TCodDEjRqf6fodf/Q=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.slim.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js">
+    </script>
+    </body>
+
+    </html>
     {{-- SUMMERNOTE --}}
 </head>

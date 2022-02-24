@@ -5,7 +5,6 @@ use App\Repositories\BaseRepository;
 use App\Models\User;
 use App\Http\Requests\UserAddRequest;
 use App\Http\Requests\UserEditRequest;
-
 class UserRepository extends BaseRepository implements UserRepositoryInterface
 {
     public function getModel()
@@ -15,7 +14,7 @@ class UserRepository extends BaseRepository implements UserRepositoryInterface
     public function search($key)
     {
         $searchKeyWord = $key->input('search');
-        $users = User::where('name', 'LIKE', "%{$key}%")
+        $users = $this->model::where('name', 'LIKE', "%{$key}%")
             ->orWhere('email', 'LIKE', "%{$key}%")
             ->orderBy('id', 'DESC')
             ->paginate($this->limit);

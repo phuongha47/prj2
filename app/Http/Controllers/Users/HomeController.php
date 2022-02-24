@@ -14,6 +14,8 @@ class HomeController extends Controller
     protected $pathToView = 'user.pages.';
     protected $imgPosts;
     protected $categoriesWithChildren;
+    protected $limit;
+
 
     /**
      * Show the form for creating a new resource.
@@ -22,8 +24,10 @@ class HomeController extends Controller
      */
     public function __construct()
     {
+        $this->limit = config('app.limit');
         $this->imgPosts = Image::where('imageable_type', Post::class)->get();
         $this->categoriesWithChildren = Category::with('children')->whereNull('parent_id')->get();
+        $this->maxBody = config('model.posts.maxBody');
     }
 
     /**
@@ -59,7 +63,7 @@ class HomeController extends Controller
         $max = config('model.posts.maxDisplay');
         $min = config('model.posts.minDisplay');
         //Lastest news
-        $latestPosts = Post::orderBy('created_at', 'desc')->take(5)->get();
+        $latestPosts = Post::orderBy('created_at', 'desc')->take(3)->get();
         //World news
         $worldSubCategories = Category::with(['children'])->where('parent_id', 1)->get();
         $worldPosts = $worldSubCategories->load('posts');
@@ -109,6 +113,7 @@ class HomeController extends Controller
                     'searchKeyWord' => $this->searchKeyWord,
                     'imgPosts' => $this->imgPosts,
                     'categoriesWithChildren' => $this->categoriesWithChildren,
+                    'maxBody' => $this->maxBody,
                 ]
             )
         );

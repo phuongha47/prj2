@@ -1,4 +1,5 @@
 <?php
+
 return [
     'welcome' => 'Welcome back, :username',
     "Dashboard" => "Dashboard",
@@ -6,8 +7,8 @@ return [
     "users" => "Users",
     "user_management" => "User Management :",
     "Posts" => "Posts",
-    "postManagement" => "Post Management :",
-    "categoryManagement" => "Category Management :",
+    "post_management" => "Post Management :",
+    "category_management" => "Category Management :",
     "ML" => "Machine Learning",
     "DL" => "Deep Learning",
     "CV" => "Computer Vision",
@@ -86,8 +87,8 @@ return [
     "dashboard" => "Dashboard",
     "goToHome" => "Go to Meranda homepage",
     "editUser" => "Edit User",
-    "editPost" => "Edit　Post",
-    "editCategory" => "Edit　Category",
+    "editPost" => "Edit Post",
+    "editCategory" => "Edit Category",
     "delete" => "Delete",
     "edit" => "Edit",
     "view" => "View",

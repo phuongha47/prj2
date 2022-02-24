@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\Redirect;
 
 class LanguageController extends Controller
 {
+    protected $controller_name = 'admin';
+    protected $pathToView = 'admin.pages.';
+    protected $pathToUi = 'ui_resources/startbootstrap-sb-admin-2/';
     public function switchLang($lang)
-    {
-        if (array_key_exists($lang, Config::get('languages'))) {
-            Session::put('applocale', $lang);
-        }
-        return Redirect::back();
-    }
+     {
+         if (array_key_exists($lang, Config::get('languages'))) {
+             Session::put('applocale', $lang);
+         }
+         return Redirect::back();
+     } 
 }

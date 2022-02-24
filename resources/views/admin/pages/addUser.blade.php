@@ -3,6 +3,7 @@
 @section('pageTitle', 'Add User')
 @section('content')
 <div class="container-fluid">
+
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">🔹 {{ __('messages.addUser') }} </h1>
@@ -27,30 +28,23 @@
                                         {{ method_field('POST') }}
                                         @csrf
                                         <div class="mb-3 form-group">
-                                            <label class="control-label"
-                                                for="content"><b>{{ trans('messages.name') }}</b></label>
-                                            <input cols="30" rows="10" type="text" name="name"
-                                                class="form-control"></input>
+                                            <label class="control-label" for="content"><b>{{ trans('messages.name') }}</b></label>
+                                            <input cols="30" rows="10" type="text" name="name" class="form-control"></input>
                                         </div>
                                         <div class="mb-3 form-group">
-                                            <label class="control-label"
-                                                for="content"><b>{{ trans('messages.Password') }}</b></label>
-                                            <input cols="30" rows="10" type="password" name="password"
-                                                class="form-control"></input>
+                                            <label class="control-label" for="content"><b>{{ trans('messages.Password') }}</b></label>
+                                            <input cols="30" rows="10" type="password" name="password" class="form-control"></input>
                                         </div>
                                         <div class="mb-3 form-group">
-                                            <label class="control-label"
-                                                for="content"><b>{{ trans('messages.ComfirmPassword') }}</b></label>
-                                            <input cols="30" rows="10" type="password" name="password_confirmation"
-                                                class="form-control"></input>
+                                            <label class="control-label" for="content"><b>{{ trans('messages.ComfirmPassword') }}</b></label>
+                                            <input cols="30" rows="10" type="password" name="password_confirmation" class="form-control"></input>
                                         </div>
                                         <label for=""><b>{{ trans('messages.roleLevel') }}</b></label>
                                         <select name="role_id" class="form-control" id="sel1">
                                             <option value="1">{{ trans('messages.user') }}</option>
                                             <option value="2">{{ trans('messages.admin') }}</option>
                                         </select>
-                                        <input type="submit" value="{{ __('messages.insert') }}"
-                                            class="btn btn-primary mt-5">
+                                        <input type="submit" value="{{ __('messages.insert') }}" class="btn btn-primary mt-5">
                                     </div>
                                 </form>
 

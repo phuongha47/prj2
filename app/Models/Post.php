@@ -10,6 +10,7 @@ class Post extends Model
     use HasFactory;
     protected $table = 'posts';
     protected $primaryKey = 'id';
+    protected $fillable = ['title', 'body', 'category_id', 'author_id'];
 
     public function images()
     {
@@ -28,6 +29,6 @@ class Post extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'author_id');
     }
 }

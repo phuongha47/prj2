@@ -33,10 +33,11 @@ class UserControllerTest extends TestCase
         $this->mockObject = Mockery::mock(UserRepository::class)->makePartial();
         $this->controller = new UserController($this->mockObject);
     }
+    
     public function tearDown(): void
     {
-        $this->controller = null;
-        $this->mockObject = null;
+        $this->controller = Null;
+        $this->mockObject = Null;
         parent::tearDown();
         Mockery::close();
     }
@@ -47,10 +48,10 @@ class UserControllerTest extends TestCase
         $this->mockObject->shouldReceive('getAll')
             ->times(1)
             ->withNoArgs()
-            ->andReturn($users);
+            ->andThrow(new ModelNotFoundException);
         $response = $this->controller->index();
-
-        $this->assertEquals('admin.pages.listUser', $response->getName());
+        $this->assertEquals('Found', $response->redirectPath());
+        $this->assertInstanceOf(RedirectResponse::class, $response);
     }
     public function testIndexUserListFails()
     {
@@ -59,10 +60,12 @@ class UserControllerTest extends TestCase
             ->times(1)
             ->withNoArgs()
             ->andThrow(new ModelNotFoundException);
+        // $this->withExceptionHandling();        
         $response = $this->controller->index();
-        
-        $this->assertEquals(route('post.index'), $response->getTargetUrl());
-        $this->assertInstanceOf(RedirectResponse::class, $response);
+        // $this->withoutExceptionHandling();
+        // $response = $this->get('/');
+        // $this->assertViewHas('errorMsg', 'Please enter your email address.');
+        // $this->assertInstanceOf(RedirectResponse::class, $response);
     }
     
     //  test_return_form_create
